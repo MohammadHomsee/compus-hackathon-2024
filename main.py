@@ -5,6 +5,7 @@ import io
 from starlette.responses import FileResponse
 import base64
 import shutil
+import base64
 
 def save_base64_image(base64_string, output_path):
     """
@@ -36,15 +37,16 @@ class Input(BaseModel):
   base64_image:str
   image_url:str
 
+class UploadInput(BaseModel):
+  upload_input:str
+
 @app.get("/data")
 async def root():
     return {"message": "Hello World"}
 
 @app.post("/upload")
-async def upload(uploaded_file):
-  with open('upload.png', 'w+b') as f:
-     shutil.copyfileobj(uploaded_file.file, f)
-  return 'upload successful!'
+async def upload(upload:UploadInput):
+  return upload.upload_input
 
 @app.post("/generate")
 async def generate(input:Input):
