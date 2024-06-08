@@ -4,12 +4,14 @@ from diffusers.utils import load_image, export_to_video
 
 class VideoGenerator:
   def setup(self):
+    pass
+
+  def generate(self, image_input_url:str):
     self.pipeline = StableVideoDiffusionPipeline.from_pretrained(
         "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16"
     )
     self.pipeline.enable_model_cpu_offload()
 
-  def generate(self, image_input_url:str):
     image = load_image(image_input_url)
     image = image.resize((1024, 576))
 
