@@ -16,3 +16,6 @@ async def root():
 @app.post("/generate")
 async def generate(input:Input):
     generator.generate(input.image_url)
+
+path = "test.png"
+generator.generate(path)
