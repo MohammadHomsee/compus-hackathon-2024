@@ -16,8 +16,13 @@ async def root():
 
 @app.post("/generate")
 async def generate(input:Input):
-    generator.generate(input.image_url, "output.mp4")
-    return "output.mp4"
+  generator.generate(input.image_url, "output.mp4")
+  return "output.mp4"
+
+@app.get('/load')
+async def load(path:str):
+  with open(path, "rb") as f:
+    return f.read()
 
 # path = "test3.png"
 # generator.generate(path)
