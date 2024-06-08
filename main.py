@@ -21,6 +21,7 @@ async def generate(input:Input):
 
 @app.get('/load')
 async def load(path:str):
+  return path
   with open(path, "rb") as f:
     return f.read()
 
