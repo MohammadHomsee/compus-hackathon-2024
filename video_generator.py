@@ -28,8 +28,8 @@ class VideoGenerator:
     }
     image = load_image_with_headers(image_input_url, headers)
     print(type(image))
-    image = image.resize((1024, 576))
+    # image = image.resize((1024, 576))
 
-    generator = torch.manual_seed(42)
-    frames = self.pipeline(image, decode_chunk_size=8, generator=generator).frames[0]
-    export_to_video(frames, output_path, fps=21)
+    # generator = torch.manual_seed(42)
+    # frames = self.pipeline(image, decode_chunk_size=8, generator=generator).frames[0]
+    # export_to_video(frames, output_path, fps=21)
