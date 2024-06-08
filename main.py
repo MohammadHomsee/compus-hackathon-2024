@@ -33,6 +33,7 @@ generator.setup()
 
 class Input(BaseModel):
   base64_image:str
+  image_url:str
 
 @app.get("/data")
 async def root():
@@ -41,8 +42,8 @@ async def root():
 @app.post("/generate")
 async def generate(input:Input):
   # save_base64_image(input.base64_image, "base64.png")
-  return 'image'
-  generator.generate("base64.png", "output.mp4")
+  # return 'image'
+  generator.generate(input.image_url, "output.mp4")
   return "output.mp4"
 
 @app.get('/load')

@@ -1,6 +1,17 @@
 import torch
 from diffusers import StableVideoDiffusionPipeline
 from diffusers.utils import load_image, export_to_video
+import requests
+from PIL import Image
+from io import BytesIO
+
+def load_image_with_headers(url, headers):
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()  # Raise an exception for HTTP errors
+
+    # Open the image using PIL
+    image = Image.open(BytesIO(response.content))
+    return image
 
 class VideoGenerator:
   def setup(self):
@@ -12,7 +23,10 @@ class VideoGenerator:
     )
     self.pipeline.enable_model_cpu_offload()
 
-    image = load_image(image_input_url)
+    headers = {
+        "Cookie": "ai_dock_token=df1a86bcdc67c261f3ea4ebb1780ef5772e0aefabbb5a6796262e700880e84dc"
+    }
+    image = load_image_with_headers(image_input_url, headers)
     image = image.resize((1024, 576))
 
     generator = torch.manual_seed(42)
