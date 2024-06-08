@@ -18,5 +18,5 @@ async def root():
 async def generate(input:Input):
     generator.generate(input.image_url)
 
-path = "test.png"
+path = "test3.png"
 generator.generate(path)
