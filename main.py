@@ -16,7 +16,8 @@ async def root():
 
 @app.post("/generate")
 async def generate(input:Input):
-    generator.generate(input.image_url)
+    generator.generate(input.image_url, "output.mp4")
+    return "output.mp4"
 
 # path = "test3.png"
 # generator.generate(path)

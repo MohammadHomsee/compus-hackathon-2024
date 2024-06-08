@@ -6,7 +6,7 @@ class VideoGenerator:
   def setup(self):
     pass
 
-  def generate(self, image_input_url:str):
+  def generate(self, image_input_url:str, output_path:str):
     self.pipeline = StableVideoDiffusionPipeline.from_pretrained(
         "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16"
     )
@@ -17,4 +17,4 @@ class VideoGenerator:
 
     generator = torch.manual_seed(42)
     frames = self.pipeline(image, decode_chunk_size=8, generator=generator).frames[0]
-    export_to_video(frames, "generated.mp4", fps=21)
+    export_to_video(frames, output_path, fps=21)
