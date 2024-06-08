@@ -5,6 +5,7 @@ from video_generator import VideoGenerator
 app = FastAPI()
 
 generator = VideoGenerator()
+generator.setup()
 
 class Input(BaseModel):
   image_url:str
