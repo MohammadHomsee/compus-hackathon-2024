@@ -41,7 +41,7 @@ async def root():
 @app.post("/generate")
 async def generate(input:Input):
   # save_base64_image(input.base64_image, "base64.png")
-  return input.base64_image
+  return 'image'
   generator.generate("base64.png", "output.mp4")
   return "output.mp4"
 
