@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from video_generator import VideoGenerator
+import io
+from starlette.responses import FileResponse
 
 app = FastAPI()
 
@@ -21,6 +23,7 @@ async def generate(input:Input):
 
 @app.get('/load')
 async def load(path:str):
+  return FileResponse(path)
   return path
   with open(path, "rb") as f:
     return f.read()
