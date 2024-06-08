@@ -27,6 +27,7 @@ class VideoGenerator:
         "Cookie": "ai_dock_token=df1a86bcdc67c261f3ea4ebb1780ef5772e0aefabbb5a6796262e700880e84dc"
     }
     image = load_image_with_headers(image_input_url, headers)
+    print(type(image))
     image = image.resize((1024, 576))
 
     generator = torch.manual_seed(42)
